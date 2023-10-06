@@ -1,0 +1,50 @@
+/* Style for the toggle switch container */
+.toggle-switch {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+ 
+/* Style for the switch label */
+.toggle-switch label {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    cursor: pointer;
+}
+  
+ 
+/* Style for the toggle switch itself */
+.toggle-switch input[type="checkbox"] {
+    appearance: none;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    position: relative;
+    outline: none;
+    transition: background-color 0.3s ease;
+}
+  
+/* Style for the switch handle */
+.toggle-switch input[type="checkbox"]::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.3s ease;
+}
+ 
+/* Style for the switch when it's checked (on) */
+.toggle-switch input[type="checkbox"]:checked {
+    background-color: orangered;
+}
+  
+/* Style for the switch handle when it's checked (on) */
+.toggle-switch input[type="checkbox"]:checked::before {
+    transform: translateX(20px);
+}
