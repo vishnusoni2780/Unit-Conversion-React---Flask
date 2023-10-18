@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../assets/toggle.css"
  
-function UnitConversion() {
+function UC_Menu() {
     const [inputs, setInputs] = useState([]);
  
     const [celsius, setCelsius] = useState('');
@@ -18,7 +18,7 @@ function UnitConversion() {
     const inputTemperatureRef = React.createRef()
     const inputVolumeRef = React.createRef()
  
-    const [isDistanceToggle, setIsDistanceToggle] = useState(false);
+   const [isDistanceToggle, setIsDistanceToggle] = useState(false);
     const [isMassToggle, setIsMassToggle] = useState(false);
     const [isTemperatureToggle, setIsTemperatureToggle] = useState(false);
     const [isVolumeToggle, setIsVolumeToggle] = useState(false);
@@ -42,7 +42,6 @@ function UnitConversion() {
         handleVolumeToggle();
         handleTemperatureToggle();
     }
- 
  
     // Distance Unit
     const handleDistanceToggle = () => {
@@ -138,7 +137,6 @@ function UnitConversion() {
         }
     }
     
- 
     // Mass Unit
     const handleMassToggle = () => {
         const currentValue = inputMassRef.current.value;
@@ -232,8 +230,6 @@ function UnitConversion() {
             setIsMassToggle(false)
         }
     }
- 
- 
  
     // Volume Unit
     const handleVolumeToggle = () => {
@@ -362,7 +358,7 @@ function UnitConversion() {
         //console.log(name, value);                         // Name of field + Value entered
     }
  
- 
+    // Bottom Buttons
     const validateInputs = () => {
         let c_distance = ""
         let c_mass = ""
@@ -439,9 +435,93 @@ function UnitConversion() {
             <div className='jumbotron'>
                 <h2 className='page-header text-center'>Unit Conversion</h2>
             </div>
+            <nav className="navbar navbar-dark fixed-top">
+                <div className="container">
+                    <a className="navbar-brand" href="index.html">Bootstrap Hamburger Menu</a>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <div className="navbar-nav mr-auto"> 
+ 
+                            <div className="nav-item">
+                                <h3 className="nav-link scroll-link" >Choose your Unit</h3>
+                            </div>
+                            {/* Hamburger Menu Options */}
+                            <div style={{width: "550px"}}>
+                                <div className="mb-3" style={{width: "150px"}}>
+                                    <label className="form-label" style={{marginRight: "5px"}}>Distance</label>
+                                    
+                                    {
+                                    (isDistanceToggle) ?
+                                        <>
+                                        <select className="form-select" aria-label="Select mass" onChange={handleDistaceChange} value={selectedDistanceUnit}>
+                                            <option value="0">{DistanceUnits_US[0]}</option>
+                                            <option value="1">{DistanceUnits_US[1]}</option>
+                                        </select>
+                                        </>
+                                    :
+                                        <>
+                                        <select className="form-select" aria-label="Select mass" onChange={handleDistaceChange} value={selectedDistanceUnit}>
+                                            <option value="0">{DistanceUnits_SI[0]}</option>
+                                            <option value="1">{DistanceUnits_SI[1]}</option>
+                                        </select>
+                                        </>
+                                    }
+                                    
+                                </div>
+                                <div className="mb-3" style={{width: "150px"}}>
+                                    <label className="form-label" style={{marginRight: "5px"}}>Mass</label>
+                                    
+                                    {
+                                    (isMassToggle) ?
+                                        <>
+                                        <select className="form-select" aria-label="Select mass" onChange={handleMassChange} value={selectedMassUnit}>
+                                            <option value="0">{MassUnits_US[0]}</option>
+                                            <option value="1">{MassUnits_US[1]}</option>
+                                        </select>
+                                        </>
+                                    :
+                                        <>
+                                        <select className="form-select" aria-label="Select mass" onChange={handleMassChange} value={selectedMassUnit}>
+                                            <option value="0">{MassUnits_SI[0]}</option>
+                                            <option value="1">{MassUnits_SI[1]}</option>
+                                        </select>
+                                        </>
+                                    }
+                                    
+                                </div>
+                                <div className="mb-3" style={{width: "150px"}}>
+                                    <label className="form-label" style={{marginRight: "5px"}}>Volume</label>
+                                    
+                                    {
+                                    (isVolumeToggle) ?
+                                        <>
+                                        <select className="form-select" aria-label="Select mass" onChange={handleVolumeChange} value={selectedVolumeUnit}>
+                                            <option value="0">{VolumeUnits_US[0]}</option>
+                                            <option value="1">{VolumeUnits_US[1]}</option>
+                                        </select>
+                                        </>
+                                    :
+                                        <>
+                                        <select className="form-select" aria-label="Select mass" onChange={handleVolumeChange} value={selectedVolumeUnit}>
+                                            <option value="0">{VolumeUnits_SI[0]}</option>
+                                            <option value="1">{VolumeUnits_SI[1]}</option>
+                                        </select>
+                                        </>
+                                    }
+                                    
+                                </div>
+                            </div>
+ 
+                        </div>
+                    </div>
+                </div>
+            </nav>
             
             <div>
- 
                 <div className="mb-1" style={{width: "500px", marginLeft:"150px"}}>
                     <div className='toggle-switch' style={{width: "500px"}}>
                         <label className='toggle-switch label' style={{width: "15px", marginLeft: "200px"}}>
@@ -450,7 +530,6 @@ function UnitConversion() {
                         <input type="checkbox" style={{marginLeft: "10px"}} checked={isToggleButton} onChange={handleToggleButton} />
                     </div>
                 </div>
- 
                 <div className="mb-3" style={{width: "150px"}}>
                     <label className="form-label">Distance</label>
                     <div className="d-flex align-items-center mb-3" style={{width: "150px"}}>
@@ -458,17 +537,11 @@ function UnitConversion() {
                         <label style={{width: "100px"}}>
                                 { (isDistanceToggle) ? <>{DistanceUnits_US[selectedDistanceUnit]}</>
                                 :
-                                <>
-                                    <select className="form-select" aria-label="Select mass" onChange={handleDistaceChange} value={selectedDistanceUnit}>
-                                        <option value="0">{DistanceUnits_SI[0]}</option>
-                                        <option value="1">{DistanceUnits_SI[1]}</option>
-                                    </select>
-                                </>
+                                <></>
                         }
                         </label>
                     </div>
                 </div>
- 
                 <div className="mb-3" style={{width: "150px"}}>
                     <label className="form-label">Mass</label>
                     <div className="d-flex align-items-center mb-3" style={{width: "150px"}}>
@@ -476,17 +549,11 @@ function UnitConversion() {
                         <label style={{width: "100px"}}>
                                 { (isMassToggle) ? <>{MassUnits_US[selectedMassUnit]}</>
                                 :
-                                <>
-                                    <select className="form-select" aria-label="Select mass" onChange={handleMassChange} value={selectedMassUnit}>
-                                        <option value="0">{MassUnits_SI[0]}</option>
-                                        <option value="1">{MassUnits_SI[1]}</option>
-                                    </select>
-                                </>
+                                <></>
                         }
                         </label>
                     </div>
                 </div>
-            
                 <div className="mb-3" style={{width: "150px"}}>
                     <label className="form-label">Volume</label>
                     <div className="d-flex align-items-center mb-3" style={{width: "150px"}}>
@@ -494,17 +561,11 @@ function UnitConversion() {
                         <label style={{width: "100px"}}>
                                 { (isVolumeToggle) ? <>{VolumeUnits_US[selectedVolumeUnit]}</>
                                 :
-                                <>
-                                    <select className="form-select" aria-label="Select mass" onChange={handleVolumeChange} value={selectedVolumeUnit}>
-                                        <option value="0">{VolumeUnits_SI[0]}</option>
-                                        <option value="1">{VolumeUnits_SI[1]}</option>
-                                    </select>
-                                </>
+                                <></>
                         }
                         </label>
                     </div>
                 </div>
- 
                 <div className="mb-3" style={{width: "150px"}}>
                     <label className="form-label">Temperature</label>
                     <div className="d-flex align-items-center mb-3" style={{width: "150px"}}>
@@ -517,7 +578,6 @@ function UnitConversion() {
                         </div>
                     </div>
                 </div>
- 
                 <div className="row" style={{marginLeft:5}}>
                     <div className="col-md-1" style={{alignItems:'center', display: 'flex',  justifyContent:'center'}}>
                         <button type="submit" onClick={handleSubmit} name="convertBtn" className="btn btn-primary" style={{width:100}}>Convert</button>
@@ -526,10 +586,9 @@ function UnitConversion() {
                         <button type="reset" onClick={clearBtn} name="clearBtn" className="btn btn-primary" style={{width:100}}>Clear</button>
                     </div>
                 </div>
- 
             </div>
         </div>
     )
 }
  
-export default UnitConversion
+export default UC_Menu
